@@ -2,6 +2,10 @@ filebeat:
   # List of prospectors to fetch data.
   prospectors:
     {{ filebeat_prospectors | to_json }}
+{% if filebeat_registry_file is defined %}
+  # to keep track of sent logs
+  registry_file: {{ filebeat_registry_file | to_json }}
+{% endif %}
 
 # Configure what outputs to use when sending the data collected by the beat.
 # Multiple outputs may be used.
